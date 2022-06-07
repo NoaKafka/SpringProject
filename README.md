@@ -4,7 +4,7 @@
 1) UserController(Join / Login)
 2) UserService
    1) UserServiceImpl
-3) UserRepository(DAO) - JPA
+3) UserRepository(DAO) - JPA - MySQL 연결
 4) Data
    1) User(Entity)
    2) JoinRequest(Request를 합치면 어떨까?)
