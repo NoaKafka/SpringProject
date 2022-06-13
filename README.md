@@ -2,6 +2,7 @@
 ## Spring + MySQL 기능 구현하기
 ### 1. 회원 관리 기능 구현
 1) UserController(Join / Login)
+   1) JWT 발급 및 반환
 2) UserService
    1) UserServiceImpl
 3) UserRepository(DAO) - JPA - MySQL 연결
