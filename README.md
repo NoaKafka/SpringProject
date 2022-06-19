@@ -15,7 +15,7 @@
       2) LoginRequest(ID, PW)
    3) UserDTO(User에게 반환하는 Data Object)
       1) UserDTO(NAME , FRIEND_LIST)
-         1) searchFriends : 친구리스트 불러와서 반환
+         1) getFriends : 친구리스트 불러와서 반환
 
 
 
