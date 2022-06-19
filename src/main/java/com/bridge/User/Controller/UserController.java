@@ -9,7 +9,8 @@ import org.springframework.web.bind.annotation.*;
 
 @Slf4j
 @ResponseBody
-@RestController("/user")
+@RestController
+@RequestMapping("/user")
 public class UserController {
     private final UserService userService;
 
@@ -27,7 +28,7 @@ public class UserController {
         return userService.joinUser(userRequest);
     }
 
-    @PostMapping("login")
+    @PostMapping("/login")
     public String login(@RequestBody UserRequest userRequest){
         log.info("userId = {} password = {}",
                 userRequest.getUserid(),

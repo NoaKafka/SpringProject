@@ -3,6 +3,7 @@ package com.bridge.Relationship.Service;
 import com.bridge.Relationship.Data.Relationship;
 import com.bridge.Relationship.Data.RelationshipEntity;
 import com.bridge.Relationship.Repository.RelationshipRepository;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -10,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.ArrayList;
 import java.util.List;
 
+@Slf4j
 @Service
 public class RelationshipServiceImpl implements RelationshipService {
 
@@ -23,7 +25,7 @@ public class RelationshipServiceImpl implements RelationshipService {
     @Override
     @Transactional
     public String addFriend(Relationship relationship) {
-
+        log.info("Service | username = {} friendname = {}", relationship.getUserName(), relationship.getFriendName());
         relationshipRepository.save(RelationshipEntity.builder()
                 .userName(relationship.getUserName())
                 .friendName(relationship.getFriendName())
