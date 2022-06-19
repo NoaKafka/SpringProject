@@ -1,13 +1,10 @@
 package com.bridge.User.Service;
 
-import com.bridge.User.Data.JoinRequest;
-import com.bridge.User.Data.LoginRequest;
+import com.bridge.User.Data.UserRequest;
 import com.bridge.User.Data.UserEntity;
 import com.bridge.User.Repository.UserRepository;
-import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -25,13 +22,13 @@ public class UserServiceImpl implements UserService{
 
     @Transactional
     @Override
-    public String joinUser(JoinRequest joinRequest) {
+    public String joinUser(UserRequest userRequest) {
         BCryptPasswordEncoder pwEncoder = new BCryptPasswordEncoder();
 
         userRepository.save(UserEntity.builder()
-                .userId(joinRequest.getUserid())
-                .userName(joinRequest.getName())
-                .password(pwEncoder.encode(joinRequest.getPw()))
+                .userId(userRequest.getUserid())
+                .userName(userRequest.getName())
+                .password(pwEncoder.encode(userRequest.getPw()))
                 .build());
 
         // 정상 저장 확인 로직 추가 필요

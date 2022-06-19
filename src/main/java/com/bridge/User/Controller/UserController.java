@@ -1,22 +1,15 @@
 package com.bridge.User.Controller;
 
-import com.bridge.User.Data.JoinRequest;
-import com.bridge.User.Data.LoginRequest;
+import com.bridge.User.Data.UserRequest;
 import com.bridge.User.Service.UserService;
-import com.sun.tools.javac.util.Log;
-import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
-@Controller
+
 @Slf4j
-@RequestMapping("user")
+@ResponseBody
+@RestController("/user")
 public class UserController {
     private final UserService userService;
 
@@ -26,24 +19,19 @@ public class UserController {
     }
 
     @PostMapping("/join")
-    public String join(@RequestBody JoinRequest joinRequest){
-        log.info(joinRequest.getUserid(), joinRequest.getName(), joinRequest.getPw());
-        if(userService.joinUser(joinRequest).equals("success")){
-            return "redirect:/login";
-
-        }
-
-        // 실패 사유 리턴 추가하기
-        return "회원가입 실패";
+    public String join(@RequestBody UserRequest userRequest){
+        log.info("userId = {} userName = {} password = {}",
+                userRequest.getUserid(),
+                userRequest.getName(),
+                userRequest.getPw());
+        return userService.joinUser(userRequest);
     }
 
     @PostMapping("login")
-    public ResponseEntity login(@RequestBody LoginRequest loginRequest){
-
-
-        if(userService.login(loginRequest.getUserid(), loginRequest.getPw()).equals("success")){
-            return new ResponseEntity(HttpStatus.OK);
-        }
-        return new ResponseEntity(HttpStatus.BAD_REQUEST);
+    public String login(@RequestBody UserRequest userRequest){
+        log.info("userId = {} password = {}",
+                userRequest.getUserid(),
+                userRequest.getPw());
+        return userService.login(userRequest.getUserid(), userRequest.getPw());
     }
 }
