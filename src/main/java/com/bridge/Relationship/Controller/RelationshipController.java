@@ -28,10 +28,16 @@ public class RelationshipController {
         return relationshipService.addFriend(relationship);
     }
 
-    @PostMapping("/friendList")
+    @PostMapping("/delete")
+    public String deleteFriend(@RequestBody Relationship relationship){
+        log.info("Controller | username = {} friendname = {}", relationship.getUserName(), relationship.getFriendName());
+        return relationshipService.deleteFriend(relationship).toString();
+    }
+
+    @PostMapping("/friendlist")
     public String getFriends(@RequestBody Relationship relationship){
 
         List<String> fList = relationshipService.getFriends(relationship.getUserName());
-        return "";
+        return fList.toString();
     }
 }

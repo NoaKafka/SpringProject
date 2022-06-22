@@ -20,7 +20,7 @@ public class RelationshipRepositorySupport extends QuerydslRepositorySupport {
         this.queryFactory = queryFactory;
     }
 
-    public List<RelationshipEntity> findByUserName(String userName){
+    public List<RelationshipEntity> findAllByUserName(String userName){
         return queryFactory
                 .selectFrom(relationshipEntity)
                 .where(relationshipEntity.userName.eq(userName))

@@ -10,5 +10,5 @@ import java.util.Optional;
 
 @Repository
 public interface RelationshipRepository extends JpaRepository<RelationshipEntity, Long> {
-    List<RelationshipEntity> findAllByUserName(String userName);
+    //List<RelationshipEntity> findAllByUserName(String userName);
 }

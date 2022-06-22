@@ -1,13 +1,15 @@
 package com.bridge.Relationship.Service;
 
 import com.bridge.Relationship.Data.Relationship;
+import com.bridge.Relationship.Data.RelationshipEntity;
 
 import java.util.List;
 
 public interface RelationshipService {
 
-    public String addFriend(Relationship relationship);
+    String addFriend(Relationship relationship);
 
-    public List<String> getFriends(String userName);
+    List<String> getFriends(String userName);
 
+    List<RelationshipEntity> deleteFriend(Relationship relationship);
 }
