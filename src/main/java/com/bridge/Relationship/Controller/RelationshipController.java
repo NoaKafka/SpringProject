@@ -31,7 +31,7 @@ public class RelationshipController {
     @PostMapping("/delete")
     public String deleteFriend(@RequestBody Relationship relationship){
         log.info("Controller | username = {} friendname = {}", relationship.getUserName(), relationship.getFriendName());
-        return relationshipService.deleteFriend(relationship).toString();
+        return relationshipService.breakRelationship(relationship).toString();
     }
 
     @PostMapping("/friendlist")

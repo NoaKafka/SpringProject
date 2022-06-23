@@ -10,5 +10,7 @@ import java.util.Optional;
 
 @Repository
 public interface RelationshipRepository extends JpaRepository<RelationshipEntity, Long> {
+    Optional<RelationshipEntity> findByUserName(String userName);
+
     //List<RelationshipEntity> findAllByUserName(String userName);
 }

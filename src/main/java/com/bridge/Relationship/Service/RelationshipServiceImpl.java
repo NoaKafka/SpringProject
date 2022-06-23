@@ -12,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Slf4j
@@ -60,16 +61,11 @@ public class RelationshipServiceImpl implements RelationshipService {
      * @return
      */
     @Transactional
-    @Modifying(clearAutomatically = true)
+    @Modifying(clearAutomatically = true)   //캐시 Clear
     @Override
-    public List<RelationshipEntity> deleteFriend(Relationship relationship) {
-        relationshipRepository.save(RelationshipEntity.builder()
-                .userName(relationship.getUserName())
-                .friendName(relationship.getFriendName())
-                .status(0)
-                .build());
-
-        List<RelationshipEntity> result = repositorySupport.findAllByUserName(relationship.getUserName());
-        return result.stream().filter(r -> r.getStatus() == 1).collect(Collectors.toList());
+    public Optional<RelationshipEntity> breakRelationship(Relationship relationship) {
+        Optional<RelationshipEntity> result = relationshipRepository.findByUserName(relationship.getUserName());
+        result.get().setStatus(0);
+        return result;
     }
 }
